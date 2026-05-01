@@ -1,0 +1,1568 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Slow Work Village — Investor Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    /* Bright palette — coral / violet / sage on cream */
+    --linen:   #EBE2D6;  /* page bg, cream */
+    --bone:    #FFFFFF;  /* elevated cards, pure white */
+    --zebra:   #F5F0E8;
+    --blush:   #E8DCD4;
+    --ink:     #231F20;
+    --mid:     #6B6566;
+    --hairline:#D9CFC2;
+    --clay:    #FF6F55;  /* coral — primary accent */
+    --clay-d:  #E64E2D;
+    --sea:     #C47CF1;  /* violet — secondary */
+    --sea-d:   #231F20;  /* dark bleed = ink */
+    --sage:    #14B672;  /* green */
+    --sage-d:  #0A7A4B;  /* AA-safe green */
+    --slide-w: 1920px;
+    --slide-h: 1080px;
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: #1c1a17;
+    font-family: 'DM Sans', 'Cera Pro', 'Inter', system-ui, sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .deck {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 24px 0 80px;
+  }
+
+  .slide {
+    position: relative;
+    width: var(--slide-w);
+    height: var(--slide-h);
+    overflow: hidden;
+    background: var(--linen);
+    transform-origin: top center;
+    flex-shrink: 0;
+  }
+
+  @media screen {
+    .slide {
+      transform: scale(var(--scale, 1));
+      margin-bottom: calc((1 - var(--scale, 1)) * -1080px);
+    }
+  }
+
+  /* Corner wordmark + slide number (no logo) */
+  .wm {
+    position: absolute;
+    bottom: 56px; right: 64px;
+    font-size: 12px;
+    color: var(--mid);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 500;
+    z-index: 5;
+  }
+  .wm.light { color: rgba(239, 230, 214, 0.65); }
+  .slide-no {
+    position: absolute;
+    bottom: 56px; left: 64px;
+    font-size: 13px;
+    color: var(--mid);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    z-index: 5;
+  }
+  .slide-no.light { color: rgba(239, 230, 214, 0.65); }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 24px;
+  }
+  .eyebrow.light { color: var(--linen); }
+  .eyebrow.sea-c { color: var(--sea); }
+
+  h1, h2, h3, h4 { margin: 0; line-height: 1.05; letter-spacing: -0.02em; }
+  h1 { font-size: 112px; font-weight: 700; }
+  h2 { font-size: 80px; font-weight: 700; }
+  h3 { font-size: 48px; font-weight: 700; }
+  h4 { font-size: 28px; font-weight: 500; line-height: 1.2; }
+  p { margin: 0; font-size: 22px; line-height: 1.5; color: var(--ink); }
+
+  .lede { font-size: 32px; line-height: 1.35; font-weight: 400; color: var(--ink); }
+  .small { font-size: 17px; line-height: 1.5; color: var(--mid); }
+  .meta { font-size: 14px; line-height: 1.5; color: var(--mid); }
+
+  .pad {
+    position: absolute; inset: 0;
+    padding: 80px 112px 120px;
+    display: flex; flex-direction: column;
+  }
+
+  .pill {
+    display: inline-flex; align-items: center;
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+  .pill-clay { background: var(--clay); color: var(--linen); }
+  .pill-sea { background: var(--sea); color: var(--linen); }
+  .pill-sage { background: rgba(122, 136, 104, 0.22); color: var(--sage-d); }
+  .pill-ghost { background: transparent; border: 1.5px solid var(--hairline); color: var(--ink); }
+  .pill-linen { background: var(--linen); color: var(--ink); }
+  .pill-bone { background: var(--bone); color: var(--ink); }
+
+  .card {
+    background: var(--bone);
+    border-radius: 14px;
+    padding: 32px;
+    border: 1.5px solid transparent;
+  }
+  .card-zebra { background: var(--zebra); }
+  .card h3 { font-size: 30px; margin-bottom: 12px; }
+  .card h4 { font-size: 22px; margin-bottom: 10px; }
+  .card p { font-size: 18px; line-height: 1.5; color: var(--ink); }
+
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+  .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+
+  .row { display: flex; gap: 24px; align-items: stretch; }
+
+  .stripe-clay { border-left: 4px solid var(--clay); padding-left: 20px; }
+  .stripe-sea { border-left: 4px solid var(--sea); padding-left: 20px; }
+  .stripe-sage { border-left: 4px solid var(--sage); padding-left: 20px; }
+
+  .bleed-clay { background: var(--clay); }
+  .bleed-sea { background: var(--sea); }
+  .bleed-sea-d { background: var(--sea-d); }
+  .bleed-ink { background: var(--ink); }
+  .bleed-blush { background: var(--blush); }
+
+  .text-light { color: var(--linen); }
+  .text-light p, .text-light h1, .text-light h2, .text-light h3, .text-light h4 { color: var(--linen); }
+
+  /* Cover */
+  .cover {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    height: 100%;
+  }
+  .cover-l, .cover-r {
+    padding: 88px 96px 88px 112px;
+    display: flex; flex-direction: column;
+    color: var(--linen);
+    position: relative; overflow: hidden;
+  }
+  .cover-l { padding-left: 112px; padding-right: 96px; justify-content: space-between; }
+  .cover-r { padding-left: 96px;  padding-right: 112px; justify-content: flex-end; }
+  .cover-photo {
+    position: absolute; inset: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+  .cover-tint {
+    position: absolute; inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .cover-tint.clay { background: var(--clay); opacity: 0.62; mix-blend-mode: multiply; }
+  .cover-tint.sea  { background: var(--sea);  opacity: 0.66; mix-blend-mode: multiply; }
+  .cover-tint.sea-deep {
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.0) 45%, rgba(0,0,0,0.45) 100%);
+    z-index: 2;
+  }
+  .cover-vignette {
+    position: absolute; inset: 0;
+    z-index: 2;
+    background: linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.0) 35%, rgba(0,0,0,0.0) 65%, rgba(0,0,0,0.30) 100%);
+    pointer-events: none;
+  }
+  .cover-content { position: relative; z-index: 3; display: flex; flex-direction: column; height: 100%; }
+  .cover-l .cover-content { justify-content: space-between; }
+  .cover-r .cover-content { justify-content: flex-end; }
+  .cover-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* Photo-break full-bleed slides */
+  .photo-bleed {
+    position: absolute; inset: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+  .photo-overlay {
+    position: absolute; inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .photo-overlay.soft {
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0.20) 0%, rgba(0,0,0,0.0) 30%, rgba(0,0,0,0.0) 42%, rgba(0,0,0,0.62) 95%, rgba(0,0,0,0.75) 100%);
+  }
+  .photo-overlay.deep {
+    background: linear-gradient(180deg, rgba(35,31,32,0.55) 0%, rgba(35,31,32,0.55) 50%, rgba(35,31,32,0.85) 100%);
+  }
+  .photo-pad {
+    position: absolute; inset: 0;
+    padding: 80px 112px 120px;
+    display: flex; flex-direction: column;
+    z-index: 3;
+  }
+
+  /* Embedded photo column inside content slides */
+  .photo-col {
+    background-size: cover;
+    background-position: center;
+    border-radius: 14px;
+    min-height: 600px;
+  }
+
+  /* Tables */
+  table.t {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 19px;
+  }
+  table.t th {
+    text-align: left;
+    font-weight: 700;
+    color: var(--mid);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--ink);
+  }
+  table.t td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--hairline);
+    color: var(--ink);
+    vertical-align: top;
+  }
+  table.t td.num { font-weight: 700; text-align: right; }
+  table.t tr:last-child td { border-bottom: none; }
+  table.t tr.total td { font-weight: 700; border-top: 2px solid var(--ink); border-bottom: none; padding-top: 18px; }
+
+  .t-compact th, .t-compact td { padding: 10px 14px; font-size: 16px; }
+  .t-compact tr.total td { padding-top: 14px; }
+
+  /* Quadrant */
+  .quad {
+    position: relative;
+    width: 100%;
+    height: 580px;
+    background: var(--bone);
+    border-radius: 14px;
+    padding: 28px;
+  }
+  .quad-axis-x, .quad-axis-y {
+    position: absolute;
+    background: var(--ink);
+  }
+  .quad-axis-x { left: 28px; right: 28px; top: 50%; height: 1.2px; }
+  .quad-axis-y { top: 28px; bottom: 28px; left: 50%; width: 1.2px; }
+  .quad-label {
+    position: absolute;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--mid);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .quad-pt {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  .quad-pt .dot {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    margin: 0 auto 6px;
+    background: var(--sea);
+  }
+  .quad-pt .name { font-size: 14px; font-weight: 700; color: var(--ink); }
+
+  /* Timeline */
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .tl-step {
+    background: var(--bone);
+    border-radius: 14px;
+    padding: 26px;
+    border-top: 4px solid var(--clay);
+  }
+  .tl-step.sea { border-top-color: var(--sea); }
+  .tl-step.sage { border-top-color: var(--sage); }
+  .tl-step.ink { border-top-color: var(--ink); }
+  .tl-step h4 { font-size: 20px; margin-bottom: 10px; }
+  .tl-step .phase { font-size: 12px; color: var(--mid); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700; margin-bottom: 6px; }
+  .tl-step ul { padding: 0; margin: 10px 0 0; list-style: none; }
+  .tl-step li { font-size: 14px; padding: 5px 0; color: var(--ink); line-height: 1.45; }
+  .tl-step li::before { content: "—  "; color: var(--clay); }
+
+  /* Big metric */
+  .metric { display: flex; flex-direction: column; gap: 6px; }
+  .metric .num { font-size: 72px; font-weight: 700; line-height: 1; color: var(--clay); letter-spacing: -0.02em; }
+  .metric .num.sea-c { color: var(--sea); }
+  .metric .num.ink-c { color: var(--ink); }
+  .metric .num.sage-c { color: var(--sage-d); }
+  .metric .lbl { font-size: 16px; color: var(--mid); font-weight: 500; }
+
+  ul.bare { list-style: none; padding: 0; margin: 0; }
+  ul.bare li { padding: 8px 0; font-size: 19px; color: var(--ink); border-bottom: 1px solid var(--hairline); }
+  ul.bare li:last-child { border-bottom: none; }
+
+  ul.dot { list-style: none; padding: 0; margin: 0; }
+  ul.dot li {
+    position: relative;
+    padding: 6px 0 6px 24px;
+    font-size: 19px;
+    color: var(--ink);
+    line-height: 1.45;
+  }
+  ul.dot li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 15px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--clay);
+  }
+  ul.dot.sea li::before { background: var(--sea); }
+  ul.dot.sage li::before { background: var(--sage); }
+  ul.dot.ink li::before { background: var(--ink); }
+
+  .x-list li::before { background: var(--clay); }
+  .ok-list li::before { background: var(--sage-d); }
+
+  @media print {
+    @page { size: 1920px 1080px; margin: 0; }
+    body { background: var(--linen); }
+    .deck { gap: 0; padding: 0; }
+    .slide { page-break-after: always; transform: none !important; margin-bottom: 0 !important; }
+  }
+
+  .center-y { display: flex; flex-direction: column; justify-content: center; height: 100%; }
+  .between-y { display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
+
+  .num-cell { font-variant-numeric: tabular-nums; }
+
+  /* Ocean wave divider — subtle texture for cover/closing */
+  .wave {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 100px;
+    opacity: 0.18;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+<!-- ============== SLIDE 1 — COVER ============== -->
+<section class="slide">
+  <div class="cover">
+    <div class="cover-l">
+      <div class="cover-photo" style="background-image: url('photos-mini/IMG_8854.JPG'); background-position: center 30%;"></div>
+      <div class="cover-tint clay"></div>
+      <div class="cover-vignette"></div>
+      <div class="cover-content">
+        <div>
+          <span class="pill pill-linen" style="color: var(--clay);">Investor Brief · 2026</span>
+        </div>
+        <div>
+          <h1 style="color: var(--linen); font-size: 144px; line-height: 0.95; text-shadow: 0 2px 24px rgba(0,0,0,0.25);">Slow<br/>Work<br/>Village</h1>
+          <p style="color: var(--linen); font-size: 28px; margin-top: 36px; max-width: 720px; line-height: 1.3; text-shadow: 0 1px 12px rgba(0,0,0,0.35);">
+            A small ocean-side village in Atlantic Spain, built for serious work.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="cover-r">
+      <div class="cover-photo" style="background-image: url('photos-mini/IMG_8853.JPG'); background-position: center 40%;"></div>
+      <div class="cover-tint sea"></div>
+      <div class="cover-tint sea-deep"></div>
+      <div class="cover-vignette"></div>
+      <div class="cover-content">
+        <div>
+          <p style="color: var(--linen); font-size: 20px; line-height: 1.55; max-width: 520px; text-shadow: 0 1px 12px rgba(0,0,0,0.35);">
+            16 apartments &amp; 6 private houses on 80 hectares of Atlantic coast.<br/>
+            Thirty-day minimum stay.<br/>
+            Farm-to-table dining.<br/>
+            Artists in residence.<br/>
+            One lasting contribution per guest.
+          </p>
+          <div style="margin-top: 48px; display: flex; gap: 12px; flex-wrap: wrap;">
+            <span class="pill pill-linen">€15M raise</span>
+            <span class="pill pill-linen">40% EBITDA margin</span>
+            <span class="pill pill-linen">Year-2 break-even</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wm light">Slow Work Village</div>
+  <div class="slide-no light">01 / 26</div>
+</section>
+
+<!-- ============== SLIDE 2 — PROBLEM ============== -->
+<section class="slide">
+  <div class="pad">
+    <span class="eyebrow">The problem</span>
+    <h2 style="max-width: 1500px;">Serious work needs places that no longer exist.</h2>
+
+    <div class="grid-3" style="margin-top: 64px;">
+      <div class="card stripe-clay">
+        <h4>Cities are loud</h4>
+        <p>Constant urgency, meetings, notifications, social pressure. Deep-work hours collapse to a few protected fragments.</p>
+      </div>
+      <div class="card stripe-clay">
+        <h4>Hotels are shallow</h4>
+        <p>Built for short stays, entertainment and turnover. No food rhythm, no quiet, no real workspace, no community.</p>
+      </div>
+      <div class="card stripe-clay">
+        <h4>Retreats are loud-different</h4>
+        <p>Workshops, cohorts, schedules, networking. Performance, not work. Optimised for short transformation, not finished output.</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 56px; max-width: 1500px;">
+      <p class="lede">
+        Founders, writers, researchers and composers describe the same need: <b>distance, silence, time, and a quality environment to finish a serious piece of work.</b> No category serves this directly.
+      </p>
+    </div>
+  </div>
+  <div class="wm">Slow Work Village</div>
+  <div class="slide-no">02 / 26</div>
+</section>
+
+<!-- ============== SLIDE 3 — WHY NOW ============== -->
+<section class="slide">
+  <div class="pad">
+    <span class="eyebrow">Why now</span>
+    <h2 style="max-width: 1500px;">A growing class of senior knowledge workers can pay for focus.</h2>
+
+    <div class="grid-4" style="margin-top: 56px;">
+      <div class="metric">
+        <div class="num">€88B</div>
+        <div class="lbl">Global wellness-and-retreat market, growing 10% YoY</div>
+      </div>
+      <div class="metric">
+        <div class="num sea-c">35M+</div>
+        <div class="lbl">Remote-first knowledge workers in Europe and North America</div>
+      </div>
+      <div class="metric">
+        <div class="num ink-c">9.5M</div>
+        <div class="lbl">Working millionaires aged 35–65 in target markets</div>
+      </div>
+      <div class="metric">
+        <div class="num sage-c">2.4×</div>
+        <div class="lbl">Growth in long-stay (30+ days) bookings on Plum Guide / Mr &amp; Mrs Smith since 2020</div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top: 56px;">
+      <div>
+        <h3 style="font-size: 30px; margin-bottom: 12px;">Three converging shifts</h3>
+        <ul class="dot">
+          <li><b>Senior remote work is normal.</b> Founders and L7+ ICs work from anywhere; "month-on, month-off" is acceptable.</li>
+          <li><b>Cities are losing the deep-work race.</b> Even the best home office is full of family, errands and noise.</li>
+          <li><b>Status moves toward output, not consumption.</b> "What did you finish?" replaces "where did you stay?"</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-size: 30px; margin-bottom: 12px;">Atlantic-Spain advantage</h3>
+        <ul class="dot sea">
+          <li><b>Ocean-side site</b> in Galicia or Costa de la Luz — 80 ha of cliff and pine, mild year-round climate.</li>
+          <li><b>Cost-to-build 30–40% lower</b> than Mediterranean France/Italy for comparable land and quality.</li>
+          <li><b>Two hours from Madrid</b> — non-stop flights from London, Berlin, Zurich, NYC.</li>
+          <li><b>Digital Nomad Visa</b> (since 2023) makes 30+ day stays legal and simple.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="wm">Slow Work Village</div>
+  <div class="slide-no">03 / 26</div>
+</section>
+
+<!-- ============== SLIDE 4 — PHOTO BREAK · ATMOSPHERE ============== -->
+<section class="slide">
+  <div class="photo-bleed" style="background-image: url('photos-mini/IMG_8856.JPG');"></div>
+  <div class="photo-overlay soft"></div>
+  <div class="photo-pad">
+    <div style="margin-top: auto; max-width: 1200px;">
+      <span class="eyebrow light" style="color: var(--linen); opacity: 0.85;">The atmosphere</span>
+      <p style="color: var(--linen); font-size: 56px; font-weight: 500; line-height: 1.15; max-width: 1400px; margin-top: 16px; text-shadow: 0 2px 18px rgba(0,0,0,0.4);">
+        A place where the day finds its own rhythm. Light, water, olive trees, time.
+      </p>
+    </div>
+  </div>
+  <div class="wm light">Slow Work Village</div>
+  <div class="slide-no light">04 / 26</div>
+</section>
+
+<!-- ============== SLIDE 5 — SOLUTION ============== -->
+<section class="slide bleed-clay">
+  <div style="position: absolute; inset: 0; display: grid; grid-template-columns: 1.1fr 0.9fr;">
+    <div class="text-light" style="padding: 80px 64px 120px 112px; display: flex; flex-direction: column;">
+      <span class="eyebrow light">The solution</span>
+      <div class="center-y" style="flex: 1;">
+        <h1 style="font-size: 128px; line-height: 0.95;">A village where serious work gets&nbsp;finished.</h1>
+        <p style="margin-top: 40px; font-size: 26px; line-height: 1.4;">
+          A small, autonomous village on the Atlantic coast of Spain. Apartments and private houses, each with its own entrance and serious soundproofing. A working farm, one dining house, a studio, a library. Thirty-day minimum stay. No schedule. No workshops. One curated contribution from each guest, kept for the next decade.
+        </p>
+      </div>
+    </div>
+    <div style="position: relative; overflow: hidden;">
+      <div style="position: absolute; inset: 48px 80px 48px 0; background: url('photos-mini/IMG_8858.JPG') center/cover; border-radius: 14px; box-shadow: 0 8px 40px rgba(0,0,0,0.18);"></div>
+    </div>
+  </div>
+  <div class="wm light">Slow Work Village</div>
+  <div class="slide-no light">05 / 26</div>
+</section>
+
+<!-- ============== SLIDE 6 — FORMULA ============== -->
+<section class="slide">
+  <div class="pad">
+    <span class="eyebrow">The formula</span>
+    <h2>Five elements. Nothing else.</h2>
+
+    <div class="grid-5" style="margin-top: 64px;">
+      <div class="card">
+        <div style="font-size: 56px; font-weight: 700; color: var(--clay); line-height: 1;">01</div>
+        <h4 style="margin-top: 20px; font-size: 22px;">Private residences</h4>
+        <p style="margin-top: 10px; font-size: 16px; color: var(--mid);">22 apartments and houses, each with private entrance, daylight and serious sound separation.</p>
+      </div>
+      <div class="card">
+        <div style="font-size: 56px; font-weight: 700; color: var(--clay); line-height: 1;">02</div>
+        <h4 style="margin-top: 20px; font-size: 22px;">Shared land</h4>
+        <p style="margin-top: 10px; font-size: 16px; color: var(--mid);">80 hectares of working farm, cliff trails, and ocean shore — open, never programmed.</p>
+      </div>
+      <div class="card">
+        <div style="font-size: 56px; font-weight: 700; color: var(--clay); line-height: 1;">03</div>
+        <h4 style="margin-top: 20px; font-size: 22px;">Seasonal food</h4>
+        <p style="margin-top: 10px; font-size: 16px; color: var(--mid);">One dining house, three meals a day, ingredients grown on site or sourced within 30 km.</p>
+      </div>
+      <div class="card">
+        <div style="font-size: 56px; font-weight: 700; color: var(--clay); line-height: 1;">04</div>
+        <h4 style="margin-top: 20px; font-size: 22px;">Serious work</h4>
+        <p style="margin-top: 10px; font-size: 16px; color: var(--mid);">A library, a recording studio and a small workshop. Built for finishing, not for performing.</p>
+      </div>
+      <div class="card">
+        <div style="font-size: 56px; font-weight: 700; color: var(--clay); line-height: 1;">05</div>
+        <h4 style="margin-top: 20px; font-size: 22px;">One contribution</h4>
+        <p style="margin-top: 10px; font-size: 16px; color: var(--mid);">Every resident leaves one curated, lasting object behind: a bench, a piece, a chapter of the library.</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 56px; padding: 32px 44px; background: var(--bone); border-radius: 14px; border-left: 4px solid var(--sea);">
+      <p style="font-size: 24px; font-weight: 500; max-width: 1500px;">
+        <i>"Private residences. Shared land. Seasonal food. Serious work. One lasting contribution."</i> — the operating formula. Anything that is not one of these does not enter the village.
+      </p>
+    </div>
+  </div>
+  <div class="wm">Slow Work Village</div>
+  <div class="slide-no">06 / 26</div>
+</section>
+
+<!-- ============== SLIDE 6 — ICP ============== -->
+<section class="slide">
+  <div class="pad">
+    <span class="eyebrow">Who it is for</span>
+    <h2>Senior people with a serious project that cannot be finished from their normal life.</h2>
+
+    <div class="grid-4" style="margin-top: 56px;">
+      <div class="card stripe-clay">
+        <h4>Founders, mid-stage</h4>
+        <p style="font-size: 16px; color: var(--mid); margin-top: 10px;">Post Series-A or post-exit. Designing the next company, writing a thesis, restructuring a leadership team. €300k+ income.</p>
+      </div>
+      <div class="card stripe-clay">
+        <h4>Senior tech ICs</h4>
+        <p style="font-size: 16px; color: var(--mid); margin-top: 10px;">L7+ engineers, principal designers, research leads. Working on a long-form system, paper, or release. €400k+ TC.</p>
+      </div>
+      <div class="card stripe-clay">
+        <h4>Writers &amp; researchers</h4>
+        <p style="font-size: 16px; color: var(--mid); margin-top: 10px;">Authors with publisher advances, academic researchers on sabbatical, journalists working on long-form.</p>
+      </div>
+      <div class="card stripe-clay">
+        <h4>Composers &amp; creators</h4>
+        <p style="font-size: 16px; color: var(--mid); margin-top: 10px;">Independent musicians, producers, filmmakers, artists with a defined project and a budget.</p>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top: 48px;">
+      <div>
+        <h4 style="font-size: 24px;">Common profile</h4>
+        <ul class="bare" style="margin-top: 12px;">
+          <li>Age 35–65, average 45</li>
+          <li>Annual income €250k–€2M</li>
+          <li>Self-directed, no need for external programming</li>
+          <li>Currently working on one defined project</li>
+          <li>Books trips 6–18 months in advance</li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="font-size: 24px;">What they pay for</h4>
+        <ul class="bare" style="margin-top: 12px;">
+          <li>Distance from their normal life</li>
+          <li>Quiet, predictable rhythm</li>
+          <li>Quality food without effort</li>
+          <li>Peers of similar seriousness, low contact</li>
+          <li>A finished outcome they can name</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="wm">Slow Work Village</div>
+  <div class="slide-no">07 / 26</div>
+</section>
+
+<!-- ============== SLIDE 7 — WHAT IT'S NOT ============== -->
+<section class="slide">
+  <div class="pad">
+    <span class="eyebrow">Category</span>
+    <h2 style="max-width: 1500px;">A new category. Not a hotel, not a retreat, not a coliving.</h2>
+
+    <div class="grid-2" style="margin-top: 56px;">
+      <div>
+        <h3 style="font-size: 34px; margin-bottom: 18px; color: var(--clay);">What it is not</h3>
+        <ul class="dot x-list">
+          <li><b>Not a hotel.</b> No turnover, no concierge, no daily housekeeping ritual, no entertainment.</li>
+          <li><b>Not a retreat.</b> No workshops, no facilitators, no cohort, no transformation arc.</li>
+          <li><b>Not a coliving.</b> No shared kitchens, no common rooms, no events calendar, no party.</li>
+          <li><b>Not an art residency.</b> Residents pay; they are not selected by jury and not asked to produce.</li>
+          <li><b>Not a digital-nomad hub.</b> Not optimised for short stays or networking; designed for long, quiet work.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-size: 34px; margin-bottom: 18px; color: var(--sage-d);">What it is</h3>
+        <ul class="dot ok-list sage">
+          <li><b>A residence.</b> Long stays. Private apartments and houses with their own entrances. A real address while you are there.</li>
+          <li><b>A working farm.</b> Food rhythm and produce drive the daily structure.</li>
+          <li><b>A library and a studio.</b> Designed for long-form work, not for performance.</li>
+          <li><b>A small, slow community.</b> Visible, optional, never compulsory.</li>
+          <li><b>A place that finishes things.</b> Tracked by a public bibliography of work done on site.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top: 48px; padding: 26px 40px; background: var(--ink); border-radius: 14px;">
+      <p style="font-size: 24px; color: var(--linen); max-width: 1500px;">
+        The category we are building is the <b style="color: var(--clay);">production residence</b> — a place built around the work, not around the guest.
+      </p>
+    </div>
+  </div>
+  <div class="wm">Slow Work Village</div>
+  <div class="slide-no">08 / 26</div>
+</section>
+
+<!-- ============== SLIDE 8 — COMPETITIVE LANDSCAPE ============== -->
+<section class="slide">
+  <div class="pad">
+    <span class="eyebrow">Competitive landscape</span>
+    <h2 style="font-size: 64px;">The space between art residency and luxury retreat is empty.</h2>
+
+    <div class="grid-2" style="margin-top: 40px; flex: 1;">
+      <div class="quad">
+        <div class="quad-axis-x"></div>
+        <div class="quad-axis-y"></div>
+        <div class="quad-label" style="top: 10px; left: 50%; transform: translateX(-50%);">Long stay (30+ days)</div>
+        <div class="quad-label" style="bottom: 10px; left: 50%; transform: translateX(-50%);">Short stay</div>
+        <div class="quad-label" style="left: 10px; top: 50%; transform: translateY(-50%) rotate(-90deg); transform-origin: left center;">Output focus</div>
+        <div class="quad-label" style="right: 10px; top: 50%; transform: translateY(-50%) rotate(90deg); transform-origin: right center;">Experience focus</div>
+
+        <div class="quad-pt" style="top: 20%; left: 80%;"><div class="dot"></div><div class="name">Aman / Six Senses</div></div>
+        <div class="quad-pt" style="top: 38%; left: 68%;"><div class="dot"></div><div class="name">Eremito</div></div>
+        <div class="quad-pt" style="top: 82%; left: 82%;"><div class="dot"></div><div class="name">Selina · Outsite</div></div>
+        <div class="quad-pt" style="top: 65%; left: 62%;"><div class="dot"></div><div class="name">Modern Elder Academy</div></div>
+        <div class="quad-pt" style="top: 78%; left: 42%;"><div class="dot"></div><div class="name">The Lighthouse</div></div>
+        <div class="quad-pt" style="top: 30%; left: 18%;"><div class="dot"></div><div class="name">MacDowell · Civitella</div></div>
+        <div class="quad-pt" style="top: 56%; left: 28%;"><div class="dot"></div><div class="name">Marfa residencies</div></div>
+
+        <div class="quad-pt" style="top: 22%; left: 38%;">
+          <div class="dot" style="background: var(--clay); width: 22px; height: 22px;"></div>
+          <div class="name" style="color: var(--clay); font-size: 16px;">Slow Work Village</div>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="font-size: 28px; margin-bottom: 16px;">Direct &amp; adjacent players</h3>
+        <table class="t t-compact">
+          <thead>
+            <tr><th>Player</th><th>Stay</th><th>€/month</th><th>Position</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Aman / Six Senses</td><td>1–7 days</td><td class="num">€45–90k</td><td>Luxury experience</td></tr>
+            <tr><td>Eremito (IT)</td><td>3–14 days</td><td class="num">€10–12k</td><td>Silent retreat</td></tr>
+            <tr><td>Modern Elder Academy</td><td>1 week</td><td class="num">€18–22k</td><td>Cohort retreat</td></tr>
+            <tr><td>The Lighthouse</td><td>1 week</td><td class="num">€9–12k</td><td>Founder retreat</td></tr>
+            <tr><td>MacDowell / Civitella</td><td>2–8 weeks</td><td class="num">free*</td><td>Juried residency</td></tr>
+            <tr><td>Marfa residencies</td><td>1–3 months</td><td class="num">€3–5k</td><td>Art residency</td></tr>
+            <tr><td>Selina / Outsite</td><td>1+ month</td><td class="num">€1.5–3k</td><td>Coliving</td></tr>
+            <tr style="background: rgba(178, 106, 77, 0.10);"><td><b>Slow Work Village</b></td><td><b>30+ days</b></td><td class="num"><b>€6–14k</b></td><td><b>Production residence</b></td></tr>
+          </tbody>
+        </table>
+        <p class="meta" style="margin-top: 12px;">* invitation-only, philanthropic; not addressable for paying customers.</p>
+      </div>
+    </div>
+  </div>
+  <div class="wm">Slow Work Village</div>
+  <div class="slide-no">09 / 26</div>
+</section>
+
+<!-- ============== SLIDE 9 — DIFFERENTIATION ============== -->
+<section class="slide bleed-sea">
+  <div class="pad text-light">
+    <span class="eyebrow light">Differentiation</span>
+    <h1 style="font-size: 92px; max-width: 1600px;">Three things no competitor combines.</h1>
+
+    <div class="grid-3" style="margin-top: 56px;">
+      <div style="background: rgba(0,0,0,0.18); padding: 32px; border-radius: 14px;">
+        <div style="font-size: 56px; font-weight: 700; color: var(--linen); line-height: 1;">01</div>
+        <h4 style="font-size: 26px; margin-top: 20px; color: var(--linen);">Output is the brand</h4>
+        <p style="font-size: 18px; margin-top: 14px; color: var(--linen); opacity: 0.9; line-height: 1.5;">A public bibliography of every book, album, paper and company finished here. Updated yearly. The proof and the marketing in one.</p>
+      </div>
+      <div style="background: rgba(0,0,0,0.18); padding: 32px; border-radius: 14px;">
+        <div style="font-size: 56px; font-weight: 700; color: var(--linen); line-height: 1;">02</div>
+        <h4 style="font-size: 26px; margin-top: 20px; color: var(--linen);">Artists in residence</h4>
+        <p style="font-size: 18px; margin-top: 14px; color: var(--linen); opacity: 0.9; line-height: 1.5;">4–6 invited artists, composers and thinkers per year, hosted free. They live alongside paying residents and pull cultural status into the village.</p>
+      </div>
+      <div style="background: rgba(0,0,0,0.18); padding: 32px; border-radius: 14px;">
+        <div style="font-size: 56px; font-weight: 700; color: var(--linen); line-height: 1;">03</div>
+        <h4 style="font-size: 26px; margin-top: 20px; color: var(--linen);">A village that grows by hand</h4>
+        <p style="font-size: 18px; margin-top: 14px; color: var(--linen); opacity: 0.9; line-height: 1.5;">Each guest leaves one curated, lasting object. Year by year the village physically grows, made by its own residents.</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 56px; padding: 24px 40px; background: rgba(0,0,0,0.25); border-radius: 14px;">
+      <p style="font-size: 22px; color: var(--linen); max-width: 1600px;">
+        Each pillar reinforces the others: artists drive press and waitlist demand, residents pay for proximity to artists and to finished outcomes, and contributions make the village irreplaceable to anyone who has stayed once.
+      </p>
+    </div>
+  </div>
+  <div class="wm light">Slow Work Village</div>
+  <div class="slide-no light">10 / 26</div>
+</section>
+
+
+<!-- ============== SLIDE 11 — PHOTO BREAK · THE ROOMS ============== -->
+<section class="slide">
+  <div class="photo-bleed" style="background-image: url('photos-mini/IMG_8857.JPG'); background-position: center 35%;"></div>
+  <div class="photo-overlay soft"></div>
+  <div class="photo-pad">
+    <div style="margin-top: auto; max-width: 1200px;">
+      <span class="eyebrow light" style="color: var(--linen); opacity: 0.85;">The rooms</span>
+      <p style="color: var(--linen); font-size: 56px; font-weight: 500; line-height: 1.15; max-width: 1400px; margin-top: 16px; text-shadow: 0 2px 18px rgba(0,0,0,0.4);">
+        Quiet rooms with thick walls. Linen, stone, wood, daylight.
+      </p>
+    </div>
+  </div>
+  <div class="wm light">Slow Work Village</div>
+  <div class="slide-no light">11 / 26</div>
+</section>
+
+<!-- ============== SLIDE 12 — PRODUCT ============== -->
+<section class="slide">
+  <div class="pad">
+    <span class="eyebrow">The product</span>
+    <h2>What is built. What is not.</h2>
+
+    <div class="grid-2" style="margin-top: 40px;">
+      <div>
+        <h3 style="font-size: 28px; margin-bottom: 14px;">On the land</h3>
+        <table class="t t-compact">
+          <thead><tr><th>Building</th><th>Count</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td><b>Standard apartment</b><br/><span class="meta">in 2 multi-unit residence buildings, separate entrances, heavy soundproofing</span></td><td class="num-cell">16</td><td>1 resident, 55 m², kitchenette, desk, balcony or terrace</td></tr>
+            <tr><td><b>Premium private house</b></td><td class="num-cell">6</td><td>1 resident, 90 m², standalone with garden &amp; ocean view</td></tr>
+            <tr><td><b>Artist residence</b></td><td class="num-cell">4</td><td>Free, invited artists only</td></tr>
+            <tr><td>Dining house</td><td class="num-cell">1</td><td>3 meals/day, communal table</td></tr>
+            <tr><td>Library</td><td class="num-cell">1</td><td>2,500 books, silent reading, quiet desks</td></tr>
+            <tr><td>Studio</td><td class="num-cell">1</td><td>Recording booth, mixing room, podcast desk</td></tr>
+            <tr><td>Workshop</td><td class="num-cell">1</td><td>For resident contributions: wood, metal, fabric</td></tr>
+            <tr><td>Working farm</td><td class="num-cell">1</td><td>Vegetables, olives, eggs, herbs — covers ~60% of F&amp;B by Y3</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3 style="font-size: 28px; margin-bottom: 14px;">Operating principles</h3>
+        <ul class="dot">
+          <li><b>Soundproofing first.</b> Multi-unit residences use double-leaf masonry walls (Rw ≥ 65 dB), independent floor slabs, no shared HVAC ducts.</li>
+          <li><b>Every unit has a private outdoor entrance.</b> No interior corridors. No "hallway hotel" feel.</li>
+          <li><b>Solar + battery + ground-source heat</b> covers ~85% of energy by Y2.</li>
+          <li><b>One central dinner</b> 7 nights a week. Optional. No table assignments.</li>
+          <li><b>No daily housekeeping.</b> Cleaned on departure or by request.</li>
+          <li><b>No televisions in units.</b> One projection room in the library.</li>
+        </ul>
+
+        <div style="margin-top: 20px; height: 220px; background: url('photos-mini/IMG_8859.JPG') center 70% / cover; border-radius: 14px;"></div>
+
+        <div style="margin-top: 16px; padding: 20px 26px; background: var(--zebra); border-radius: 14px;">
+          <h4 style="font-size: 19px; margin-bottom: 4px;">Site selection</h4>
+          <p style="font-size: 15px; color: var(--mid);">Atlantic coast of Spain — Galicia (Costa da Morte / Rías Baixas) or western Andalucía (Costa de la Luz). ~80 ha with cliff or low-coast access, ≤ 2 hours from Madrid or Santiago. Existing finca conversion reduces capex 35–40% vs greenfield.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wm">Slow Work Village</div>
+  <div class="slide-no">12 / 26</div>
+</section>
+
+<!-- ============== SLIDE 11 — ARTIST RESIDENCY ============== -->
+<section class="slide">
+  <div class="pad">
+    <span class="eyebrow">Artist residency program</span>
+    <h2 style="max-width: 1500px;">A small, invited residency drives every other part of the business.</h2>
+
+    <div class="grid-2" style="margin-top: 48px;">
+      <div>
+        <h3 style="font-size: 28px; margin-bottom: 16px;">How it works</h3>
+        <ul class="dot sea">
+          <li>4–6 artists per year, 4–8 weeks each.</li>
+          <li>Stay is free. Travel and per-diem covered for first 3 years.</li>
+          <li>Curated by an external selection group (one curator + two advisors), refreshed yearly.</li>
+          <li>No teaching obligation. No public performance. They come to work.</li>
+          <li>One open evening per stay — optional, low-key, residents only.</li>
+          <li>One artwork or recording stays with the village.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-size: 28px; margin-bottom: 16px;">What it does for the business</h3>
+        <ul class="dot">
+          <li><b>Press and credibility.</b> Each well-chosen name unlocks 2–4 long-form features per year. Worth €200–400k in equivalent paid acquisition.</li>
+          <li><b>Waitlist demand.</b> Founders book to be near the artists they admire.</li>
+          <li><b>Cultural moat.</b> Imitators with money cannot replicate a 5-year body of work made on site.</li>
+          <li><b>A growing collection.</b> Year by year the village owns a small but real cultural archive.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top: 48px; padding: 26px 40px; background: var(--blush); border-radius: 14px; border-left: 4px solid var(--sea);">
+      <p style="font-size: 20px; max-width: 1500px;">
+        <b>Cost model:</b> ~€40k per resident artist (food, fees, travel) × 5 = €200k/year. Funded directly from operating margin. Zero dependency on grants.
+      </p>
+    </div>
+  </div>
+  <div class="wm">Slow Work Village</div>
+  <div class="slide-no">13 / 26</div>
+</section>
+
+<!-- ============== SLIDE 12 — RESIDENT CONTRIBUTION ============== -->
+<section class="slide">
+  <div class="pad">
+    <span class="eyebrow">Resident contribution</span>
+    <h2 style="font-size: 64px;">Each guest leaves one lasting object. Curated, not optional, not free-form.</h2>
+
+    <div class="grid-3" style="margin-top: 56px;">
+      <div class="card stripe-clay">
+        <h4>How it is bounded</h4>
+        <p style="margin-top: 10px;">One contribution per stay. Reviewed by the Site Director. ~80% of proposals are rejected or reshaped. Must serve a 10-year horizon.</p>
+      </div>
+      <div class="card stripe-sea">
+        <h4>What counts</h4>
+        <p style="margin-top: 10px;">A bench, a garden bed, a sound piece, a tool, a software tool, a chapter of the library, a section of trail, a piece of furniture.</p>
+      </div>
+      <div class="card stripe-sage">
+        <h4>What it produces</h4>
+        <p style="margin-top: 10px;">A village that visibly grows by hand. A return loop: every resident has reason to come back. Belonging, not consumption.</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 48px;">
+      <h3 style="font-size: 30px; margin-bottom: 18px;">The flywheel</h3>
+      <div class="row" style="gap: 12px; align-items: stretch;">
+        <div style="flex: 1; padding: 22px; background: var(--bone); border-radius: 14px; border-left: 4px solid var(--clay);">
+          <h4 style="font-size: 19px;">Guest stays</h4>
+          <p style="font-size: 16px; color: var(--mid); margin-top: 6px;">30–90 day residency, finishes serious work.</p>
+        </div>
+        <div style="display: flex; align-items: center; font-size: 28px; color: var(--clay);">→</div>
+        <div style="flex: 1; padding: 22px; background: var(--bone); border-radius: 14px; border-left: 4px solid var(--clay);">
+          <h4 style="font-size: 19px;">Leaves a contribution</h4>
+          <p style="font-size: 16px; color: var(--mid); margin-top: 6px;">One curated object becomes part of the village.</p>
+        </div>
+        <div style="display: flex; align-items: center; font-size: 28px; color: var(--clay);">→</div>
+        <div style="flex: 1; padding: 22px; background: var(--bone); border-radius: 14px; border-left: 4px solid var(--clay);">
+          <h4 style="font-size: 19px;">Becomes co-author</h4>
+          <p style="font-size: 16px; color: var(--mid); margin-top: 6px;">Returns 1–2× per year. Brings peers.</p>
+        </div>
+        <div style="display: flex; align-items: center; font-size: 28px; color: var(--clay);">→</div>
+        <div style="flex: 1; padding: 22px; background: var(--bone); border-radius: 14px; border-left: 4px solid var(--clay);">
+          <h4 style="font-size: 19px;">Village deepens</h4>
+          <p style="font-size: 16px; color: var(--mid); margin-top: 6px;">Each year, more reasons to visit and to refer.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wm">Slow Work Village</div>
+  <div class="slide-no">14 / 26</div>
+</section>
+
+
+<!-- ============== SLIDE 15 — PHOTO BREAK · THE EXPERIENCE ============== -->
+<section class="slide">
+  <div class="photo-bleed" style="background-image: url('photos-mini/IMG_8855.JPG'); background-position: center 50%;"></div>
+  <div class="photo-overlay soft"></div>
+  <div class="photo-pad">
+    <div style="margin-top: auto; max-width: 1200px;">
+      <span class="eyebrow light" style="color: var(--linen); opacity: 0.85;">The experience</span>
+      <p style="color: var(--linen); font-size: 56px; font-weight: 500; line-height: 1.15; max-width: 1400px; margin-top: 16px; text-shadow: 0 2px 18px rgba(0,0,0,0.4);">
+        Considered, never staged. Beauty in the materials, not in the brochure.
+      </p>
+    </div>
+  </div>
+  <div class="wm light">Slow Work Village</div>
+  <div class="slide-no light">15 / 26</div>
+</section>
+
+<!-- ============== SLIDE 13 — PRICING ============== -->
+<section class="slide">
+  <div class="pad">
+    <span class="eyebrow">Pricing</span>
+    <h2>Three tiers. All-inclusive. By application.</h2>
+
+    <div class="grid-3" style="margin-top: 56px;">
+      <div style="background: var(--bone); border-radius: 14px; padding: 36px; border-top: 6px solid var(--ink);">
+        <p class="meta" style="text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700;">Standard apartment</p>
+        <div style="margin-top: 12px; display: flex; align-items: baseline; gap: 8px;">
+          <span style="font-size: 64px; font-weight: 700; color: var(--ink); line-height: 1;">€6,000</span>
+          <span style="font-size: 20px; color: var(--mid);">/ month</span>
+        </div>
+        <p style="margin-top: 12px; font-size: 16px; color: var(--mid);">16 apartments · in residence buildings · 30-day minimum</p>
+        <ul class="bare" style="margin-top: 24px;">
+          <li>55 m² apartment, separate outdoor entrance</li>
+          <li>Heavy soundproofing, terrace or balcony</li>
+          <li>3 meals/day, farm-to-table</li>
+          <li>Library, studio, workshop access</li>
+          <li>One curated contribution slot</li>
+        </ul>
+      </div>
+
+      <div style="background: var(--clay); border-radius: 14px; padding: 36px; border-top: 6px solid var(--ink); color: var(--linen);">
+        <p class="meta" style="text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700; color: var(--linen); opacity: 0.85;">Premium house</p>
+        <div style="margin-top: 12px; display: flex; align-items: baseline; gap: 8px;">
+          <span style="font-size: 64px; font-weight: 700; line-height: 1;">€14,000</span>
+          <span style="font-size: 20px; opacity: 0.85;">/ month</span>
+        </div>
+        <p style="margin-top: 12px; font-size: 16px; opacity: 0.85;">6 standalone houses · ocean view · 30-day minimum</p>
+        <ul class="bare" style="margin-top: 24px;">
+          <li style="color: var(--linen); border-color: rgba(239,230,214,0.25);">90 m² standalone house with garden</li>
+          <li style="color: var(--linen); border-color: rgba(239,230,214,0.25);">Direct ocean view, larger working room</li>
+          <li style="color: var(--linen); border-color: rgba(239,230,214,0.25);">Priority booking, returning-resident first</li>
+          <li style="color: var(--linen); border-color: rgba(239,230,214,0.25);">Studio booking priority</li>
+          <li style="color: var(--linen); border-color: rgba(239,230,214,0.25);">Everything in Standard</li>
+        </ul>
+      </div>
+
+      <div style="background: var(--bone); border-radius: 14px; padding: 36px; border-top: 6px solid var(--sea);">
+        <p class="meta" style="text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700;">Fellowship</p>
+        <div style="margin-top: 12px; display: flex; align-items: baseline; gap: 8px;">
+          <span style="font-size: 64px; font-weight: 700; color: var(--sea); line-height: 1;">Free</span>
+        </div>
+        <p style="margin-top: 12px; font-size: 16px; color: var(--mid);">4 places per year · By open application</p>
+        <ul class="bare" style="margin-top: 24px;">
+          <li>Researchers, writers without funding</li>
+          <li>Selected by external committee</li>
+          <li>Funded out of operating margin (~€100k/yr)</li>
+          <li>Strengthens bibliography &amp; PR</li>
+          <li>Public outcome required</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top: 40px; padding: 22px 36px; background: var(--zebra); border-radius: 14px;">
+      <p style="font-size: 18px; color: var(--ink); max-width: 1600px;">
+        <b>All-inclusive</b> means: residence + 3 meals/day + cleaning on departure + utilities + Wi-Fi + library + studio + workshop + community events + contribution mentorship. No upsell, no hidden fees.
+      </p>
+    </div>
+  </div>
+  <div class="wm">Slow Work Village</div>
+  <div class="slide-no">16 / 26</div>
+</section>
+
+<!-- ============== SLIDE 14 — UNIT ECONOMICS ============== -->
+<section class="slide">
+  <div class="pad">
+    <span class="eyebrow">Unit economics</span>
+    <h2>One guest-month at €6,000 (standard apartment).</h2>
+
+    <div class="grid-2" style="margin-top: 48px;">
+      <div>
+        <h3 style="font-size: 28px; margin-bottom: 12px;">Cost-to-deliver</h3>
+        <table class="t t-compact">
+          <thead><tr><th>Item</th><th style="text-align: right;">€</th></tr></thead>
+          <tbody>
+            <tr><td>F&amp;B (3 meals/day, retail value €1,500)</td><td class="num num-cell">800</td></tr>
+            <tr><td>Apartment amortisation (capex / 25 yrs)</td><td class="num num-cell">1,100</td></tr>
+            <tr><td>Housekeeping &amp; linen</td><td class="num num-cell">400</td></tr>
+            <tr><td>Energy, water, maintenance</td><td class="num num-cell">220</td></tr>
+            <tr><td>Library, studio, workshop access</td><td class="num num-cell">350</td></tr>
+            <tr><td>Site Director, curation, community</td><td class="num num-cell">300</td></tr>
+            <tr><td>Marketing &amp; bibliography PR</td><td class="num num-cell">350</td></tr>
+            <tr><td>Artist residency subsidy (allocated)</td><td class="num num-cell">600</td></tr>
+            <tr class="total"><td>Total cost</td><td class="num num-cell">4,120</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3 style="font-size: 28px; margin-bottom: 12px;">Revenue &amp; margin</h3>
+        <div style="background: var(--bone); border-radius: 14px; padding: 28px; border-left: 4px solid var(--clay);">
+          <div class="row" style="justify-content: space-between; align-items: baseline; gap: 12px;">
+            <span style="font-size: 20px;">Revenue (standard)</span>
+            <span style="font-size: 30px; font-weight: 700;">€6,000</span>
+          </div>
+          <div class="row" style="justify-content: space-between; align-items: baseline; gap: 12px; margin-top: 12px;">
+            <span style="font-size: 20px;">Cost</span>
+            <span style="font-size: 30px; font-weight: 700;">€4,120</span>
+          </div>
+          <div class="row" style="justify-content: space-between; align-items: baseline; gap: 12px; margin-top: 12px; padding-top: 12px; border-top: 2px solid var(--ink);">
+            <span style="font-size: 20px;">Gross margin</span>
+            <span style="font-size: 30px; font-weight: 700; color: var(--sage-d);">€1,880</span>
+          </div>
+          <div class="row" style="justify-content: space-between; align-items: baseline; gap: 12px; margin-top: 8px;">
+            <span style="font-size: 19px; color: var(--mid);">Margin %</span>
+            <span style="font-size: 19px; font-weight: 700; color: var(--sage-d);">31%</span>
+          </div>
+        </div>
+
+        <div style="margin-top: 16px; padding: 18px 28px; background: var(--blush); border-radius: 14px;">
+          <h4 style="font-size: 19px; margin-bottom: 4px;">Premium tier (€14k house)</h4>
+          <p style="font-size: 16px;">Same cost base + ~€700 premium amortisation. Margin = €9,180 (~66%).</p>
+        </div>
+
+        <div style="margin-top: 12px; padding: 18px 28px; background: var(--zebra); border-radius: 14px;">
+          <h4 style="font-size: 19px; margin-bottom: 4px;">Blended margin at 75% occupancy</h4>
+          <p style="font-size: 16px;">Mix of standard + premium = 40% gross margin. EBITDA margin (after central overhead) ≈ 38–40%.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wm">Slow Work Village</div>
+  <div class="slide-no">17 / 26</div>
+</section>
+
+<!-- ============== SLIDE 15 — 5-YEAR PROJECTION ============== -->
+<section class="slide">
+  <div class="pad">
+    <span class="eyebrow">Five-year projection</span>
+    <h2>From soft launch to steady-state.</h2>
+
+    <div style="margin-top: 40px;">
+      <table class="t t-compact">
+        <thead>
+          <tr>
+            <th></th>
+            <th style="text-align: right;">Year 1<br/><span style="text-transform: none; letter-spacing: 0; font-weight: 400;">soft launch</span></th>
+            <th style="text-align: right;">Year 2<br/><span style="text-transform: none; letter-spacing: 0; font-weight: 400;">full open</span></th>
+            <th style="text-align: right;">Year 3</th>
+            <th style="text-align: right;">Year 4</th>
+            <th style="text-align: right;">Year 5</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Units operating</td><td class="num num-cell">12</td><td class="num num-cell">22</td><td class="num num-cell">22</td><td class="num num-cell">22</td><td class="num num-cell">22</td></tr>
+          <tr><td>Average occupancy</td><td class="num num-cell">55%</td><td class="num num-cell">72%</td><td class="num num-cell">78%</td><td class="num num-cell">82%</td><td class="num num-cell">82%</td></tr>
+          <tr><td>Average price (€/mo)</td><td class="num num-cell">€7,000</td><td class="num num-cell">€7,800</td><td class="num num-cell">€8,200</td><td class="num num-cell">€8,800</td><td class="num num-cell">€9,200</td></tr>
+          <tr><td>Core revenue</td><td class="num num-cell">€555k</td><td class="num num-cell">€1.48M</td><td class="num num-cell">€1.69M</td><td class="num num-cell">€1.91M</td><td class="num num-cell">€1.99M</td></tr>
+          <tr><td>Add-ons (events, studio, alumni)</td><td class="num num-cell">€40k</td><td class="num num-cell">€180k</td><td class="num num-cell">€260k</td><td class="num num-cell">€340k</td><td class="num num-cell">€400k</td></tr>
+          <tr class="total"><td>Total revenue</td><td class="num num-cell">€595k</td><td class="num num-cell">€1.66M</td><td class="num num-cell">€1.95M</td><td class="num num-cell">€2.25M</td><td class="num num-cell">€2.39M</td></tr>
+          <tr><td>Operating costs</td><td class="num num-cell">€760k</td><td class="num num-cell">€1.15M</td><td class="num num-cell">€1.25M</td><td class="num num-cell">€1.38M</td><td class="num num-cell">€1.46M</td></tr>
+          <tr class="total"><td>EBITDA</td><td class="num num-cell" style="color: var(--clay);">−€165k</td><td class="num num-cell" style="color: var(--sage-d);">€510k</td><td class="num num-cell" style="color: var(--sage-d);">€700k</td><td class="num num-cell" style="color: var(--sage-d);">€870k</td><td class="num num-cell" style="color: var(--sage-d);">€930k</td></tr>
+          <tr><td>EBITDA margin</td><td class="num num-cell">—</td><td class="num num-cell">31%</td><td class="num num-cell">36%</td><td class="num num-cell">39%</td><td class="num num-cell">39%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-3" style="margin-top: 32px;">
+      <div style="padding: 20px 28px; background: var(--bone); border-radius: 14px; border-left: 4px solid var(--sage);">
+        <p class="meta" style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;">Year 2</p>
+        <p style="font-size: 18px; margin-top: 6px;">EBITDA-positive. ~€510k.</p>
+      </div>
+      <div style="padding: 20px 28px; background: var(--bone); border-radius: 14px; border-left: 4px solid var(--sage);">
+        <p class="meta" style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;">Year 3</p>
+        <p style="font-size: 18px; margin-top: 6px;">Steady-state margin 36%. Farm covers 60% of F&amp;B.</p>
+      </div>
+      <div style="padding: 20px 28px; background: var(--bone); border-radius: 14px; border-left: 4px solid var(--sage);">
+        <p class="meta" style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;">Year 5</p>
+        <p style="font-size: 18px; margin-top: 6px;">€2.4M revenue, €930k EBITDA, ready to scale to site #2.</p>
+      </div>
+    </div>
+  </div>
+  <div class="wm">Slow Work Village</div>
+  <div class="slide-no">18 / 26</div>
+</section>
+
+<!-- ============== SLIDE 16 — CUSTOMER ACQUISITION ============== -->
+<section class="slide">
+  <div class="pad">
+    <span class="eyebrow">First-100-guest plan</span>
+    <h2>How the waitlist is full before the village opens.</h2>
+
+    <div class="timeline" style="margin-top: 48px;">
+      <div class="tl-step ink">
+        <p class="phase">Phase 1 · M0–M6</p>
+        <h4>Seed network</h4>
+        <ul>
+          <li>Founders' personal network: 200 hand-written invitations to senior peers</li>
+          <li>10 founder-circle dinners in London, Berlin, NYC, Lisbon</li>
+          <li>Long-form essay series on slow work, distributed via guest authors</li>
+        </ul>
+        <p class="meta" style="margin-top: 10px;">Target: 250 names on waitlist.</p>
+      </div>
+
+      <div class="tl-step sea">
+        <p class="phase">Phase 2 · M6–M12</p>
+        <h4>Cultural anchors</h4>
+        <ul>
+          <li>Announce Year-1 artist cohort (4 names) 9 months ahead</li>
+          <li>Each artist brings 1 long-form profile in target media</li>
+          <li>Curated film + sound piece released from artist visits</li>
+          <li>Founders' essays placed in The Atlantic, Aeon, Wired UK</li>
+        </ul>
+        <p class="meta" style="margin-top: 10px;">Target: 750 waitlist, 80 application requests.</p>
+      </div>
+
+      <div class="tl-step">
+        <p class="phase">Phase 3 · M12–M18</p>
+        <h4>Soft open: 12 units</h4>
+        <ul>
+          <li>Open application: select first 60 residents from waitlist</li>
+          <li>Founder-friends &amp; cultural advisors stay first, write public reflections</li>
+          <li>Yearly bibliography goes live, updated monthly</li>
+          <li>Press tour: 2 anchor profiles in FT, Monocle, Sifted, NYT Travel</li>
+        </ul>
+        <p class="meta" style="margin-top: 10px;">Target: 12 units at 55% occupancy.</p>
+      </div>
+
+      <div class="tl-step sage">
+        <p class="phase">Phase 4 · M18–M30</p>
+        <h4>Full open · 22 units</h4>
+        <ul>
+          <li>Word-of-mouth becomes primary channel (referrals 60%)</li>
+          <li>Returning-resident program launches</li>
+          <li>"Friends of the village" 12-month booking window</li>
+          <li>Year-2 bibliography (~30 finished works) drives next cohort</li>
+        </ul>
+        <p class="meta" style="margin-top: 10px;">Target: 22 units at 72% occupancy, year-2 break-even.</p>
+      </div>
+    </div>
+
+    <div class="grid-4" style="margin-top: 36px;">
+      <div style="padding: 18px 24px; background: var(--zebra); border-radius: 14px;">
+        <p class="meta" style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;">Channels</p>
+        <p style="font-size: 16px; margin-top: 6px;">Founder network, artist PR, long-form essays, owned media (bibliography), referral.</p>
+      </div>
+      <div style="padding: 18px 24px; background: var(--zebra); border-radius: 14px;">
+        <p class="meta" style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;">No paid ads</p>
+        <p style="font-size: 16px; margin-top: 6px;">Paid media is an anti-signal for ICP. All acquisition is editorial, network or referral.</p>
+      </div>
+      <div style="padding: 18px 24px; background: var(--zebra); border-radius: 14px;">
+        <p class="meta" style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;">Application gate</p>
+        <p style="font-size: 16px; margin-top: 6px;">Every booking is a 5-question application. Filters tourists out and signals seriousness.</p>
+      </div>
+      <div style="padding: 18px 24px; background: var(--zebra); border-radius: 14px;">
+        <p class="meta" style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;">CAC target</p>
+        <p style="font-size: 16px; margin-top: 6px;">~€450 per booked guest-month — fully editorial / referral driven.</p>
+      </div>
+    </div>
+  </div>
+  <div class="wm">Slow Work Village</div>
+  <div class="slide-no">19 / 26</div>
+</section>
+
+<!-- ============== SLIDE 17 — ROADMAP ============== -->
+<section class="slide">
+  <div class="pad">
+    <span class="eyebrow">Roadmap</span>
+    <h2>30 months from close to full open.</h2>
+
+    <div style="margin-top: 40px;">
+      <table class="t t-compact">
+        <thead>
+          <tr><th>Phase</th><th>Months</th><th>Milestones</th><th style="text-align: right;">Cumulative spend</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>0 · Close &amp; site</b></td>
+            <td>M0 – M3</td>
+            <td>Investment closed. Coastal site purchased. Architectural team signed.</td>
+            <td class="num num-cell">€4.5M</td>
+          </tr>
+          <tr>
+            <td><b>1 · Permits &amp; pre-build</b></td>
+            <td>M3 – M9</td>
+            <td>Tourist + long-stay licence secured. Master plan approved. Waitlist opens publicly.</td>
+            <td class="num num-cell">€5.5M</td>
+          </tr>
+          <tr>
+            <td><b>2 · Construction phase A</b></td>
+            <td>M9 – M18</td>
+            <td>Residence building A (12 apartments) + dining + library + farm online. Site Director hired. First artist cohort lands.</td>
+            <td class="num num-cell">€10.5M</td>
+          </tr>
+          <tr>
+            <td><b>3 · Soft launch</b></td>
+            <td>M15 – M21</td>
+            <td>First 60 paying residents. Bibliography v1 published. Anchor press features.</td>
+            <td class="num num-cell">€12.5M</td>
+          </tr>
+          <tr>
+            <td><b>4 · Construction phase B</b></td>
+            <td>M18 – M27</td>
+            <td>Residence building B (4 apartments) + 6 standalone houses + studio + workshop + 4 artist residences online.</td>
+            <td class="num num-cell">€14.5M</td>
+          </tr>
+          <tr>
+            <td><b>5 · Full open</b></td>
+            <td>M27 – M30</td>
+            <td>22 paying units operating. Year-2 break-even on track. Waitlist 18 months out.</td>
+            <td class="num num-cell">€15.0M</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-3" style="margin-top: 40px;">
+      <div style="padding: 22px 30px; background: var(--bone); border-radius: 14px; border-left: 4px solid var(--clay);">
+        <h4 style="font-size: 20px;">Critical path</h4>
+        <p style="font-size: 16px; color: var(--mid); margin-top: 6px;">Coastal permits and licences. Begun pre-close to compress timeline by 4–6 months.</p>
+      </div>
+      <div style="padding: 22px 30px; background: var(--bone); border-radius: 14px; border-left: 4px solid var(--sea);">
+        <h4 style="font-size: 20px;">Risk-reduction</h4>
+        <p style="font-size: 16px; color: var(--mid); margin-top: 6px;">Existing finca with prior touristic use chosen specifically to reduce permitting risk by 60% vs greenfield.</p>
+      </div>
+      <div style="padding: 22px 30px; background: var(--bone); border-radius: 14px; border-left: 4px solid var(--sage);">
+        <h4 style="font-size: 20px;">Early revenue</h4>
+        <p style="font-size: 16px; color: var(--mid); margin-top: 6px;">First paying residents 15 months after close. €595k revenue in Year 1 from soft launch.</p>
+      </div>
+    </div>
+  </div>
+  <div class="wm">Slow Work Village</div>
+  <div class="slide-no">20 / 26</div>
+</section>
+
+
+<!-- ============== SLIDE 21 — PHOTO BREAK · THE DETAIL ============== -->
+<section class="slide">
+  <div class="photo-bleed" style="background-image: url('photos-mini/IMG_8861.JPG'); background-position: center 40%;"></div>
+  <div class="photo-overlay soft"></div>
+  <div class="photo-pad">
+    <div style="margin-top: auto; max-width: 1200px;">
+      <span class="eyebrow light" style="color: var(--linen); opacity: 0.85;">The detail</span>
+      <p style="color: var(--linen); font-size: 56px; font-weight: 500; line-height: 1.15; max-width: 1400px; margin-top: 16px; text-shadow: 0 2px 18px rgba(0,0,0,0.4);">
+        Brass, stone, plaster, time. Nothing that needs replacing.
+      </p>
+    </div>
+  </div>
+  <div class="wm light">Slow Work Village</div>
+  <div class="slide-no light">21 / 26</div>
+</section>
+
+<!-- ============== SLIDE 18 — INVESTMENT ASK ============== -->
+<section class="slide bleed-clay">
+  <div class="pad text-light">
+    <span class="eyebrow light">Investment ask</span>
+    <h1 style="font-size: 184px; line-height: 0.9;">€15M</h1>
+    <p style="font-size: 32px; max-width: 1500px; margin-top: 18px;">to build, open, and operate Slow Work Village to year-2 break-even.</p>
+
+    <div class="grid-3" style="margin-top: 56px;">
+      <div style="background: rgba(0,0,0,0.18); padding: 30px; border-radius: 14px;">
+        <p class="meta" style="color: var(--linen); opacity: 0.85; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700;">Founder equity</p>
+        <div style="font-size: 56px; font-weight: 700; line-height: 1; margin-top: 8px;">€5M</div>
+        <p style="margin-top: 12px; font-size: 17px; opacity: 0.9;">Operating partner + co-founder commitment. Aligned long-term.</p>
+      </div>
+      <div style="background: rgba(0,0,0,0.18); padding: 30px; border-radius: 14px;">
+        <p class="meta" style="color: var(--linen); opacity: 0.85; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700;">Strategic LP equity</p>
+        <div style="font-size: 56px; font-weight: 700; line-height: 1; margin-top: 8px;">€5M</div>
+        <p style="margin-top: 12px; font-size: 17px; opacity: 0.9;">Family offices, impact-leaning principals, founder-friendly capital. 10-year hold.</p>
+      </div>
+      <div style="background: rgba(0,0,0,0.18); padding: 30px; border-radius: 14px;">
+        <p class="meta" style="color: var(--linen); opacity: 0.85; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700;">Real-estate debt</p>
+        <div style="font-size: 56px; font-weight: 700; line-height: 1; margin-top: 8px;">€5M</div>
+        <p style="margin-top: 12px; font-size: 17px; opacity: 0.9;">Senior debt against the finca. 25-year amortisation. ~5% all-in cost.</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 40px;">
+      <h3 style="font-size: 26px; color: var(--linen); margin-bottom: 16px;">Use of funds</h3>
+      <div class="grid-5">
+        <div style="padding: 20px; background: rgba(0,0,0,0.25); border-radius: 14px;">
+          <p class="meta" style="color: var(--linen); opacity: 0.85;">Land + finca</p>
+          <div style="font-size: 28px; font-weight: 700; margin-top: 4px;">€4.0M</div>
+          <p style="font-size: 13px; opacity: 0.85; margin-top: 2px;">27%</p>
+        </div>
+        <div style="padding: 20px; background: rgba(0,0,0,0.25); border-radius: 14px;">
+          <p class="meta" style="color: var(--linen); opacity: 0.85;">Construction</p>
+          <div style="font-size: 28px; font-weight: 700; margin-top: 4px;">€7.5M</div>
+          <p style="font-size: 13px; opacity: 0.85; margin-top: 2px;">50%</p>
+        </div>
+        <div style="padding: 20px; background: rgba(0,0,0,0.25); border-radius: 14px;">
+          <p class="meta" style="color: var(--linen); opacity: 0.85;">Infra + farm + energy</p>
+          <div style="font-size: 28px; font-weight: 700; margin-top: 4px;">€1.5M</div>
+          <p style="font-size: 13px; opacity: 0.85; margin-top: 2px;">10%</p>
+        </div>
+        <div style="padding: 20px; background: rgba(0,0,0,0.25); border-radius: 14px;">
+          <p class="meta" style="color: var(--linen); opacity: 0.85;">Pre-launch + brand</p>
+          <div style="font-size: 28px; font-weight: 700; margin-top: 4px;">€1.0M</div>
+          <p style="font-size: 13px; opacity: 0.85; margin-top: 2px;">7%</p>
+        </div>
+        <div style="padding: 20px; background: rgba(0,0,0,0.25); border-radius: 14px;">
+          <p class="meta" style="color: var(--linen); opacity: 0.85;">Working capital</p>
+          <div style="font-size: 28px; font-weight: 700; margin-top: 4px;">€1.0M</div>
+          <p style="font-size: 13px; opacity: 0.85; margin-top: 2px;">7%</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wm light">Slow Work Village</div>
+  <div class="slide-no light">22 / 26</div>
+</section>
+
+<!-- ============== SLIDE 19 — RETURNS & EXIT ============== -->
+<section class="slide">
+  <div class="pad">
+    <span class="eyebrow">Returns &amp; exit</span>
+    <h2>Two return paths. Both already proven in adjacent categories.</h2>
+
+    <div class="grid-2" style="margin-top: 48px;">
+      <div class="card stripe-clay">
+        <h4 style="font-size: 24px;">Path A · Strategic exit (Year 8–10)</h4>
+        <ul class="bare" style="margin-top: 12px;">
+          <li>Acquirer: boutique-hospitality group (Aman, Six Senses, Belmond) or impact-leaning sovereign / family office</li>
+          <li>Multiple: 8–10× steady-state EBITDA</li>
+          <li>EBITDA Year 8: ~€1.3M (post second site)</li>
+          <li>Equity exit value: €50–80M before debt</li>
+          <li>Equity-on-equity: 5–8× over 8 years</li>
+          <li>IRR (equity tranche): ~20–25%</li>
+        </ul>
+      </div>
+      <div class="card stripe-sea">
+        <h4 style="font-size: 24px;">Path B · Self-funded scale</h4>
+        <ul class="bare" style="margin-top: 12px;">
+          <li>Operate single site to Year 5</li>
+          <li>Open Site #2 (Portuguese Atlantic or Greek Ionian) using EBITDA + light debt</li>
+          <li>Open Site #3 by Year 9</li>
+          <li>3-site EBITDA Year 10: ~€4.0M</li>
+          <li>Distribute to LPs from Year 6 onward (~6–7% yield)</li>
+          <li>Long hold, lower-volatility income asset for family offices</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid-4" style="margin-top: 48px;">
+      <div class="metric">
+        <div class="num">~22%</div>
+        <div class="lbl">Target IRR (Path A, equity tranche)</div>
+      </div>
+      <div class="metric">
+        <div class="num sea-c">€80M</div>
+        <div class="lbl">Top-end exit value, single site, Year 10</div>
+      </div>
+      <div class="metric">
+        <div class="num sage-c">7%</div>
+        <div class="lbl">Distribution yield (Path B, Year 6+)</div>
+      </div>
+      <div class="metric">
+        <div class="num ink-c">3 sites</div>
+        <div class="lbl">Long-term capacity (Year 12+)</div>
+      </div>
+    </div>
+  </div>
+  <div class="wm">Slow Work Village</div>
+  <div class="slide-no">23 / 26</div>
+</section>
+
+<!-- ============== SLIDE 20 — RISKS ============== -->
+<section class="slide">
+  <div class="pad">
+    <span class="eyebrow">Risks &amp; mitigation</span>
+    <h2>Where this can fail. What we have already done about it.</h2>
+
+    <div style="margin-top: 40px;">
+      <table class="t t-compact">
+        <thead>
+          <tr><th>Risk</th><th>Severity</th><th>Mitigation</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Occupancy below 70%</b><br/><span class="meta">Long-stay model is sensitive to occupancy.</span></td>
+            <td><span class="pill pill-clay">High</span></td>
+            <td>18-month pre-launch waitlist (~750 names). Application gate. Tiered pricing absorbs demand swings. Year-1 plan only loads 12 of 22 units.</td>
+          </tr>
+          <tr>
+            <td><b>Permitting delays</b><br/><span class="meta">Spanish coastal permits add complexity.</span></td>
+            <td><span class="pill pill-clay">High</span></td>
+            <td>Existing finca with prior touristic use (rural-tourism licence already in place) and outside the 100m maritime-public-domain strip. Local counsel engaged 6 months pre-close.</td>
+          </tr>
+          <tr>
+            <td><b>Coastal weather</b><br/><span class="meta">Atlantic storms in winter, salt corrosion.</span></td>
+            <td><span class="pill pill-sea">Medium</span></td>
+            <td>Marine-grade materials. Set back from cliff edge by 80m+. Heated indoor work spaces all winter. Off-peak winter pricing built into model.</td>
+          </tr>
+          <tr>
+            <td><b>Brand misread as luxury hotel</b><br/><span class="meta">If positioned wrong, ICP rejects it.</span></td>
+            <td><span class="pill pill-sea">Medium</span></td>
+            <td>Application gate. Output-led brand (bibliography). No "concierge" language. No paid ads. Editorial-only PR.</td>
+          </tr>
+          <tr>
+            <td><b>Single-site concentration</b><br/><span class="meta">All capex in one location.</span></td>
+            <td><span class="pill pill-sea">Medium</span></td>
+            <td>Insurance, conservative debt ratio (33% LTV). Plan for second site only after Year 5 with proven cash flow.</td>
+          </tr>
+          <tr>
+            <td><b>Operator quality</b><br/><span class="meta">Long-stay hospitality is a skilled craft.</span></td>
+            <td><span class="pill pill-sage">Mitigated</span></td>
+            <td>Site Director hired from Aman/Six Senses long-stay alumni network in Year 1. Hospitality lead with 10+ years sustained-stay experience.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="wm">Slow Work Village</div>
+  <div class="slide-no">24 / 26</div>
+</section>
+
+<!-- ============== SLIDE 21 — TEAM ============== -->
+<section class="slide">
+  <div class="pad">
+    <span class="eyebrow">Team &amp; advisors</span>
+    <h2>Who we are. Who we are hiring next.</h2>
+
+    <div class="grid-3" style="margin-top: 48px;">
+      <div class="card stripe-clay">
+        <h4>Founder &amp; operator</h4>
+        <p style="font-size: 16px; color: var(--mid); margin-top: 10px;"><b>Lead — to be filled.</b><br/>Prior operating role in hospitality, technology or media. Lives on site through Year 3.</p>
+      </div>
+      <div class="card stripe-clay">
+        <h4>Site Director</h4>
+        <p style="font-size: 16px; color: var(--mid); margin-top: 10px;">Hired Year 1. Background: long-stay boutique hospitality (Aman, Six Senses, Eremito alumni network). Curates contributions.</p>
+      </div>
+      <div class="card stripe-clay">
+        <h4>Head of Hospitality</h4>
+        <p style="font-size: 16px; color: var(--mid); margin-top: 10px;">Hired Year 1. Background: 10+ years in independent boutique sustained-stay. Owns guest experience &amp; F&amp;B rhythm.</p>
+      </div>
+    </div>
+
+    <div class="grid-3" style="margin-top: 24px;">
+      <div class="card stripe-sea">
+        <h4>Architectural lead</h4>
+        <p style="font-size: 16px; color: var(--mid); margin-top: 10px;">Iberian practice with experience in heavy-mass coastal construction and acoustic isolation in multi-unit residences.</p>
+      </div>
+      <div class="card stripe-sea">
+        <h4>Curator (artist program)</h4>
+        <p style="font-size: 16px; color: var(--mid); margin-top: 10px;">External, non-executive. Selects 4–6 artists per year. Refreshed yearly to avoid taste lock-in.</p>
+      </div>
+      <div class="card stripe-sea">
+        <h4>Brand &amp; editorial</h4>
+        <p style="font-size: 16px; color: var(--mid); margin-top: 10px;">Owns waitlist, bibliography, press. Background in editorial publishing (Monocle / Frame / Aeon circle).</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 40px; padding: 24px 36px; background: var(--blush); border-radius: 14px;">
+      <h4 style="font-size: 22px;">Advisory board (in formation)</h4>
+      <p style="font-size: 18px; margin-top: 6px;">One former Aman executive · one published author or composer · one boutique-hospitality operator with finca experience · one Spanish coastal-permits counsel.</p>
+    </div>
+  </div>
+  <div class="wm">Slow Work Village</div>
+  <div class="slide-no">25 / 26</div>
+</section>
+
+<!-- ============== SLIDE 26 — VISION / CLOSING ============== -->
+<section class="slide">
+  <div class="photo-bleed" style="background-image: url('photos-mini/IMG_8860.JPG'); background-position: center 60%;"></div>
+  <div class="photo-overlay deep"></div>
+  <div class="pad text-light" style="z-index: 3;">
+    <span class="eyebrow" style="color: var(--clay);">Vision</span>
+    <div class="center-y" style="flex: 1;">
+      <h1 style="font-size: 128px; line-height: 0.95; max-width: 1700px; color: var(--linen);">
+        A small village by the ocean.<br/>
+        A growing bibliography.<br/>
+        <span style="color: var(--clay);">Work that lasts.</span>
+      </h1>
+
+      <p style="margin-top: 48px; font-size: 28px; max-width: 1400px; line-height: 1.4; color: var(--linen); opacity: 0.9;">
+        In ten years, Slow Work Village is the place a serious person goes to finish the thing only they can finish. The bibliography reads like a small canon. The village itself is built, in part, by the people who lived there. The category we are creating did not exist when we started.
+      </p>
+
+      <div style="margin-top: 56px; display: flex; gap: 16px; flex-wrap: wrap;">
+        <span class="pill pill-clay" style="font-size: 16px; padding: 12px 22px;">€15M raise</span>
+        <span class="pill pill-sea" style="font-size: 16px; padding: 12px 22px;">22 units · 80 ha coast</span>
+        <span class="pill pill-linen" style="font-size: 16px; padding: 12px 22px;">Year-2 break-even</span>
+        <span class="pill" style="font-size: 16px; padding: 12px 22px; background: rgba(239,230,214,0.15); color: var(--linen); border: 1.5px solid rgba(239,230,214,0.35);">~22% target IRR</span>
+      </div>
+
+      <div style="margin-top: 64px; padding-top: 24px; border-top: 1px solid rgba(239,230,214,0.25);">
+        <p style="font-size: 18px; color: var(--linen); opacity: 0.7;">Investor brief · Slow Work Village · 2026 · contact for full data room and term sheet.</p>
+      </div>
+    </div>
+  </div>
+  <div class="wm light">Slow Work Village</div>
+  <div class="slide-no light">26 / 26</div>
+</section>
+
+</div>
+
+<script>
+  function scaleSlides() {
+    const targetW = 1920;
+    const vw = document.documentElement.clientWidth;
+    const scale = Math.min(1, (vw - 48) / targetW);
+    document.documentElement.style.setProperty('--scale', scale);
+  }
+  scaleSlides();
+  window.addEventListener('resize', scaleSlides);
+
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  function currentSlideIdx() {
+    const y = window.scrollY + window.innerHeight * 0.4;
+    for (let i = slides.length - 1; i >= 0; i--) {
+      if (slides[i].offsetTop <= y) return i;
+    }
+    return 0;
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ' || e.key === 'ArrowRight') {
+      e.preventDefault();
+      const next = Math.min(slides.length - 1, currentSlideIdx() + 1);
+      slides[next].scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else if (e.key === 'ArrowUp' || e.key === 'PageUp' || e.key === 'ArrowLeft') {
+      e.preventDefault();
+      const prev = Math.max(0, currentSlideIdx() - 1);
+      slides[prev].scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+</script>
+
+</body>
+</html>
